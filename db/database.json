@@ -1,81 +1,103 @@
 {
-    "ingredients": {
-      "breads": [
-        {
-          "id": 1,
-          "type": "Italiano Branco"
-        },
-        {
-          "id": 2,
-          "type": "3 Queijos"
-        },
-        {
-          "id": 3,
-          "type": "Parmesão e Orégano"
-        },
-        {
-          "id": 4,
-          "type": "Integral"
-        }
-      ],
-      "meat": [
-        {
-          "id": 1,
-          "type": "Maminha"
-        },
-        {
-          "id": 2,
-          "type": "Alcatra"
-        },
-        {
-          "id": 3,
-          "type": "Picanha"
-        },
-        {
-          "id": 4,
-          "type": "Veggie burger"
-        }
-      ],
-      "optional": [
-        {
-          "id": 1,
-          "type": "Bacon"
-        },
-        {
-          "id": 2,
-          "type": "Cheddar"
-        },
-        {
-          "id": 3,
-          "type": "Salame"
-        },
-        {
-          "id": 4,
-          "type": "Tomate"
-        },
-        {
-          "id": 4,
-          "type": "Cebola roxa"
-        },
-        {
-          "id": 4,
-          "type": "Pepino"
-        }
-      ]
-    },
-    "status": [
+  "ingredients": {
+    "breads": [
       {
-        "id": 1,
-        "type": "Solicitado"
+        "id": "7da3",
+        "type": "Italiano Branco"
       },
       {
-        "id": 2,
-        "type": "Em produção"
+        "id": "6c28",
+        "type": "3 Queijos"
       },
       {
-        "id": 3,
-        "type": "Finalizado"
+        "id": "74f4",
+        "type": "Parmesão e Orégano"
+      },
+      {
+        "id": "ecce",
+        "type": "Integral"
+      },
+      {
+        "id": "58a8",
+        "type": "Pão de Arábe"
       }
     ],
-    "burgers": []
-  }
+    "type_of_meat": [
+      {
+        "id": "4e39",
+        "type": "Maminha"
+      },
+      {
+        "id": "133e",
+        "type": "Alcatra"
+      },
+      {
+        "id": "fc41",
+        "type": "Picanha"
+      },
+      {
+        "id": "4bfa",
+        "type": "Veggie burger"
+      }
+    ],
+    "more_options": [
+      {
+        "id": "49ba",
+        "type": "Carne"
+      },
+      {
+        "id": "7bb3 ",
+        "type": "Queijo"
+      },
+      {
+        "id": "ec1f",
+        "type": "Ovo"
+      },
+      {
+        "id": "17ad",
+        "type": "Bacon"
+      }
+    ]
+  },
+  "status": [
+    {
+      "id": "93aa",
+      "type": "Solicitado"
+    },
+    {
+      "id": "ddaa",
+      "type": "Em produção"
+    },
+    {
+      "id": "9fa0",
+      "type": "Finalizado"
+    }
+  ],
+  "burgers": [
+    {
+      "id": "ffda",
+      "name": "André Martins",
+      "bread": "3 Queijos",
+      "meat": "Maminha",
+      "more_options": [
+        {
+          "id": 1,
+          "type": "Carne"
+        },
+        {
+          "id": 2,
+          "type": "Queijo"
+        },
+        {
+          "id": 3,
+          "type": "Ovo"
+        },
+        {
+          "id": 4,
+          "type": "Bacon"
+        }
+      ],
+      "status": "Solicitado"
+    }
+  ]
+}

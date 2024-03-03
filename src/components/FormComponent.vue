@@ -45,9 +45,9 @@
             <input
               id="additional-title"
               type="checkbox"
-              name="additional"
+              name="more_options"
               :value="additional.type"
-              :v-model="more_options"
+              v-model="selectedOptions"
             />
             <span>{{ additional.type }}</span>
           </div>
@@ -68,11 +68,12 @@ export default {
     return {
       breads: null,
       type_of_meat: null,
-      more_options: [],
+      additional: null,
       name: null,
       bread: null,
       meat: null,
-      additional: null,
+      more_options: null,
+      selectedOptions: [],
       msg: null,
     };
   },
@@ -94,9 +95,10 @@ export default {
         name: this.name,
         bread: this.bread,
         meat: this.meat,
-        more_options: Array.from(this.more_options),
+        more_options: Array.from(this.selectedOptions),
         status: "Solicitado",
       };
+      console.log(data);
       const dataJson = JSON.stringify(data);
       const request = await fetch("http://localhost:3000/burgers", {
         method: "POST",
@@ -105,6 +107,7 @@ export default {
       });
 
       const res = await request.json();
+
       /** Criar tratamento de erro, para requisição POST */
 
       this.name = "";
@@ -113,6 +116,7 @@ export default {
       this.additional = "";
       this.msg = `Pedido de Nº ${res.id} realizado com sucesso!`;
 
+      /** Limpa a mensagem depois de 5 segundos */
       setTimeout(() => (this.msg = ""), 5000);
     },
   },

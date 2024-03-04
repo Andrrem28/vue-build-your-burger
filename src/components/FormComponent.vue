@@ -106,7 +106,7 @@ export default {
         body: dataJson,
       });
 
-      const res = await request.json();
+      const response = await request.json();
 
       /** Criar tratamento de erro, para requisição POST */
 
@@ -114,7 +114,7 @@ export default {
       this.meat = "";
       this.bread = "";
       this.additional = "";
-      this.msg = `Pedido de Nº ${res.id} realizado com sucesso!`;
+      this.msg = `Pedido de código ${response.id} realizado com sucesso!`;
 
       /** Limpa a mensagem depois de 5 segundos */
       setTimeout(() => (this.msg = ""), 5000);

@@ -1,5 +1,6 @@
 <template>
-  <div id="burger-table">
+  <div id="burger-table" v-if="burgers && burgers.length > 0">
+    <MessageComponent :msg="msg" v-show="msg" />
     <div>
       <div id="burger-table-heading">
         <div class="order-id">#:</div>
@@ -24,16 +25,35 @@
           </ul>
         </div>
         <div>
-          <select name="status" class="status">
+          <select
+            name="status"
+            class="status"
+            @change="updateOrder($event, burger.id)"
+          >
             <option>Selecione...</option>
+            <option
+              v-for="situation in status"
+              :value="situation.type"
+              :key="situation.id"
+              :selected="burger.status == situation.type"
+            >
+              {{ situation.type }}
+            </option>
           </select>
-          <button class="delete-btn">Cancelar</button>
+          <button class="delete-btn" @click="deleteOrder(burger.id)">
+            Cancelar
+          </button>
         </div>
       </div>
     </div>
   </div>
+  <div v-else>
+    <h2>Não há pedidos no momento!</h2>
+  </div>
 </template>
 <script>
+import MessageComponent from "./MessageComponent.vue";
+
 export default {
   name: "Dashboard-component",
   data() {
@@ -43,6 +63,11 @@ export default {
       status: [],
     };
   },
+
+  components: {
+    MessageComponent,
+  },
+
   methods: {
     async getOrders() {
       const request = await fetch("http://localhost:3000/burgers");
@@ -50,9 +75,48 @@ export default {
 
       this.burgers = data;
     },
+
+    async getStatus() {
+      const request = await fetch("http://localhost:3000/status");
+      const data = await request.json();
+
+      this.status = data;
+    },
+
+    async updateOrder(event, id) {
+      const option = event.target.value;
+
+      const dataJson = JSON.stringify({ status: option });
+
+      const request = await fetch(`http://localhost:3000/burgers/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: dataJson,
+      });
+      const response = await request.json();
+      this.msg = `Pedido de código ${response.id} atualizado para (${response.status}) sucesso!`;
+
+      /** Limpa a mensagem depois de 5 segundos */
+      setTimeout(() => (this.msg = ""), 5000);
+    },
+
+    async deleteOrder(id) {
+      const request = await fetch(`http://localhost:3000/burgers/${id}`, {
+        method: "DELETE",
+      });
+
+      const response = await request.json();
+      this.msg = `Pedido de código ${response.id} removido com sucesso!`;
+
+      /** Limpa a mensagem depois de 5 segundos */
+      setTimeout(() => (this.msg = ""), 5000);
+      this.getOrders();
+    },
   },
+
   mounted() {
     this.getOrders();
+    this.getStatus();
   },
 };
 </script>
